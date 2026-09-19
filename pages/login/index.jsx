@@ -1,5 +1,7 @@
 import { useState } from "react";
 import "./style.css";
+import { FcGoogle } from "react-icons/fc";
+import { FaFacebook, FaGithub, FaLinkedinIn } from "react-icons/fa";
 
 export default function LoginPage() {
   const [isActive, setIsActive] = useState(false);
@@ -14,7 +16,8 @@ export default function LoginPage() {
             <h1>Create Account</h1>
             <div className="social-icons">
               <a href="#" className="icon">
-                <i className="fa-brands fa-google-plus-g"></i>
+                {/* <i className="fa-brands fa-google-plus-g"></i> */}
+                <FcGoogle />
               </a>
               <a href="#" className="icon">
                 <i className="fa-brands fa-facebook-f"></i>
@@ -40,16 +43,20 @@ export default function LoginPage() {
             <h1>Sign In</h1>
             <div className="social-icons">
               <a href="#" className="icon">
-                <i className="fa-brands fa-google-plus-g"></i>
+                {/* <i className="fa-brands fa-google-plus-g"></i> */}
+                <FcGoogle size={20} />
               </a>
               <a href="#" className="icon">
-                <i className="fa-brands fa-facebook-f"></i>
+                {/* <i className="fa-brands fa-facebook-f"></i> */}
+                <FaFacebook color="#1877F2" size={20} />{" "}
               </a>
               <a href="#" className="icon">
-                <i className="fa-brands fa-github"></i>
+                {/* <i className="fa-brands fa-github"></i> */}
+                <FaGithub color="#000000" size={20} />
               </a>
               <a href="#" className="icon">
-                <i className="fa-brands fa-linkedin-in"></i>
+                {/* <i className="fa-brands fa-linkedin-in"></i> */}
+                <FaLinkedinIn color="#0077b5" size={20} />
               </a>
             </div>
             <span>or use your email password</span>
@@ -81,7 +88,10 @@ export default function LoginPage() {
               </p>
               <button
                 className="hidden"
-                onClick={() => setIsActive(true)}
+                onClick={() => {
+                  setIsActive(true);
+                  console.log("Sign Up button clicked");
+                }}
                 type="button"
               >
                 Sign Up
