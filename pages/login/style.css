@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
+/* @import "tailwindcss"; */
 
 * {
   margin: 0;
@@ -60,7 +61,7 @@ body {
   cursor: pointer;
 }
 
-.container button.hidden {
+.container button.hidden_login {
   background-color: transparent;
   border-color: #fff;
 }
