@@ -7,15 +7,37 @@ import { useEffect, useState } from "react";
 import client from "@/api/client";
 
 export default function Home() {
-  // const { user, loading } = useAuth();
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
+  const [session, setSession] = useState<any | null>(null);
+  // const { data, error } = client.auth.getSession();
 
   // if (!loading && user) {
   //   // router.push("/todo");
   //   return null;
   // }
+
+  useEffect(() => {
+    // 1. Get initial session from storage
+    client.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+    });
+
+    // 2. Listen for auth state changes (login, logout, token refresh)
+    const {
+      data: { subscription },
+    } = client.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
+
+  function showSession() {
+    console.log("Current session:", session.user.email);
+  }
+
   async function signUpNewUser() {
     const { data, error } = await client.auth.signUp({
       email: "nikhilbangalor@gmail.com",
@@ -32,7 +54,8 @@ export default function Home() {
   }
   return (
     <div className="relative min-h-screen">
-      <button onClick={() => console.log("user", user)}>Test</button>
+      <button onClick={() => console.log(showSession())}>Test</button>
+      {/* {session.user && <p>Welcome, {session.user.email}!</p>} */}
       <button onClick={() => signUpNewUser()}>USer</button>
       {loading ? <h1>Loading</h1> : <h1>Loading done...</h1>}
       <Link
